@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,9 +31,14 @@ public class Hammer : MonoBehaviour
             }
             if(hit.collider.CompareTag("Button"))
             {
-                hit.collider.gameObject.GetComponent<ButtonTrigger>().isTrigger = true;
-                hit.collider.gameObject.SetActive(false);
+                ButtonInteraction(hit.collider.gameObject);
             }
         }
+    }
+
+    public void ButtonInteraction(GameObject obj)
+    {
+        obj.GetComponent<ButtonTrigger>().isTrigger = true;
+        obj.SetActive(false);
     }
 }

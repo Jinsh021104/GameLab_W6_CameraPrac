@@ -98,6 +98,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Test"",
+                    ""type"": ""Button"",
+                    ""id"": ""5bc4724c-072e-4243-8688-9d30d781fed8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -230,6 +239,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90e7bdde-d0c8-4ba3-8a0c-1331403aaf38"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -464,6 +484,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerPC_Look = m_PlayerPC.FindAction("Look", throwIfNotFound: true);
         m_PlayerPC_Reset = m_PlayerPC.FindAction("Reset", throwIfNotFound: true);
         m_PlayerPC_Pause = m_PlayerPC.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerPC_Test = m_PlayerPC.FindAction("Test", throwIfNotFound: true);
         // PlayerPad
         m_PlayerPad = asset.FindActionMap("PlayerPad", throwIfNotFound: true);
         m_PlayerPad_Move = m_PlayerPad.FindAction("Move", throwIfNotFound: true);
@@ -544,6 +565,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerPC_Look;
     private readonly InputAction m_PlayerPC_Reset;
     private readonly InputAction m_PlayerPC_Pause;
+    private readonly InputAction m_PlayerPC_Test;
     public struct PlayerPCActions
     {
         private @PlayerInput m_Wrapper;
@@ -556,6 +578,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_PlayerPC_Look;
         public InputAction @Reset => m_Wrapper.m_PlayerPC_Reset;
         public InputAction @Pause => m_Wrapper.m_PlayerPC_Pause;
+        public InputAction @Test => m_Wrapper.m_PlayerPC_Test;
         public InputActionMap Get() { return m_Wrapper.m_PlayerPC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -589,6 +612,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Test.started += instance.OnTest;
+            @Test.performed += instance.OnTest;
+            @Test.canceled += instance.OnTest;
         }
 
         private void UnregisterCallbacks(IPlayerPCActions instance)
@@ -617,6 +643,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Test.started -= instance.OnTest;
+            @Test.performed -= instance.OnTest;
+            @Test.canceled -= instance.OnTest;
         }
 
         public void RemoveCallbacks(IPlayerPCActions instance)
@@ -772,6 +801,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnTest(InputAction.CallbackContext context);
     }
     public interface IPlayerPadActions
     {

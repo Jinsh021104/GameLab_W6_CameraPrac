@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform target;
 
     [HideInInspector]public Animator animator;
+    public bool isCutScene = false;
     public bool isRolling = false;
     public bool isAttacking = false;
     public bool isAim = false;
@@ -88,41 +89,44 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _groundedPlayer = _controller.isGrounded;
-        if (_groundedPlayer && _playerVelocity.y < 0)
+        if(!isCutScene)
         {
-            _playerVelocity.y = 0f;
-            animator.SetBool("isJump", false);
-        }
-        if (!isRolling)
-        {
-            Vector3 move = target.transform.forward * _moveDirection.z + target.transform.right * _moveDirection.x;
-            move.y = 0;
-            if (_moveDirection != Vector3.zero && !isAim)
+            _groundedPlayer = _controller.isGrounded;
+            if (_groundedPlayer && _playerVelocity.y < 0)
             {
-                animator.SetBool("isMove", true);
-                _cameraForward = move.normalized;
-                character.transform.forward = _cameraForward;
+                _playerVelocity.y = 0f;
+                animator.SetBool("isJump", false);
             }
-            else if (isAim)
+            if (!isRolling)
             {
-                _cameraForward = target.transform.forward;
-                character.transform.forward = _cameraForward;
+                Vector3 move = target.transform.forward * _moveDirection.z + target.transform.right * _moveDirection.x;
+                move.y = 0;
+                if (_moveDirection != Vector3.zero && !isAim)
+                {
+                    animator.SetBool("isMove", true);
+                    _cameraForward = move.normalized;
+                    character.transform.forward = _cameraForward;
+                }
+                else if (isAim)
+                {
+                    _cameraForward = target.transform.forward;
+                    character.transform.forward = _cameraForward;
+                }
+                else
+                {
+                    animator.SetBool("isMove", false);
+                }
+
+
+                _controller.Move(move * Time.deltaTime * _playerSpeed);
             }
             else
             {
-                animator.SetBool("isMove", false);
+                _controller.Move(character.transform.forward * Time.deltaTime * _rollSpeed);
             }
 
-
-            _controller.Move(move * Time.deltaTime * _playerSpeed);
+            _playerVelocity.y += _gravityValue * Time.deltaTime;
+            _controller.Move(_playerVelocity * Time.deltaTime);
         }
-        else
-        {
-            _controller.Move(character.transform.forward * Time.deltaTime * _rollSpeed);
-        }
-
-        _playerVelocity.y += _gravityValue * Time.deltaTime;
-        _controller.Move(_playerVelocity * Time.deltaTime);
     }
 }
