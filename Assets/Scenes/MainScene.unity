@@ -3700,7 +3700,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 17
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_ActionId
@@ -3719,6 +3723,10 @@ PrefabInstance:
       value: a863b60e-b4ba-4569-af94-204be7d1a303
       objectReference: {fileID: 0}
     - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 5bc4724c-072e-4243-8688-9d30d781fed8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_ActionName
       value: PlayerPC/Reset[/Keyboard/r]
       objectReference: {fileID: 0}
@@ -3733,6 +3741,10 @@ PrefabInstance:
     - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_ActionName
       value: PlayerPad/Pause[/XInputControllerWindows/select]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: PlayerPC/Test[/Keyboard/slash]
       objectReference: {fileID: 0}
     - target: {fileID: 5334395323434440166, guid: c9c12fe448a405545a7457af2d1f1ec4, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
@@ -4074,6 +4086,10 @@ PrefabInstance:
     - target: {fileID: 8589780300070299261, guid: c0f564c5672e08d428769c4f11a5a367, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589780300070299261, guid: c0f564c5672e08d428769c4f11a5a367, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8589780300070299261, guid: c0f564c5672e08d428769c4f11a5a367, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_ActionId
